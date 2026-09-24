@@ -12,15 +12,17 @@
 
     <style>
         :root {
-            --bg-dark: #060911;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --accent-blue: #0088cc;
-            --accent-cyan: #06b6d4;
+            --bg-dark: #070a0f;
+            --card-bg: rgba(13, 20, 28, 0.82);
+            --card-border: rgba(212, 175, 55, 0.18);
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #ffd700;
+            --accent-gold-glow: rgba(212, 175, 55, 0.2);
             --accent-emerald: #10b981;
-            --accent-glow: rgba(6, 182, 212, 0.15);
+            --accent-emerald-dark: #0d3b2e;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --text-gold: #fef08a;
         }
 
         *, *::before, *::after {
@@ -39,8 +41,9 @@
             align-items: center;
             padding: 20px 14px;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.15) 0%, transparent 65%),
-                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
+                radial-gradient(circle at 100% 100%, rgba(13, 59, 46, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 0% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 45%);
             background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
         }
@@ -49,17 +52,17 @@
             width: 100%;
             max-width: 440px;
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
             padding: 28px 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.05);
             position: relative;
             overflow: hidden;
         }
 
-        /* Subtle Glow Accents */
+        /* Premium Gold Top Glow */
         .container::before {
             content: '';
             position: absolute;
@@ -67,7 +70,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent-gold-bright), var(--accent-gold), transparent);
         }
 
         /* Live Status Pill */
@@ -81,22 +84,23 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            color: var(--accent-emerald);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--accent-gold-bright);
             padding: 6px 14px;
             border-radius: 999px;
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.2px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
         }
 
         .pulse-dot {
             width: 7px;
             height: 7px;
-            background-color: var(--accent-emerald);
+            background-color: var(--accent-gold-bright);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-emerald);
+            box-shadow: 0 0 10px var(--accent-gold-bright);
             animation: pulse 1.8s infinite;
         }
 
@@ -105,7 +109,6 @@
             50% { opacity: 0.3; transform: scale(1.2); }
         }
 
-        /* Profile Block */
         .profile {
             text-align: center;
             margin-bottom: 22px;
@@ -123,16 +126,17 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid var(--accent-gold);
             padding: 2px;
             background: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
         }
 
         .badge-verified {
             position: absolute;
             bottom: 2px;
             right: 2px;
-            background: var(--accent-cyan);
+            background: linear-gradient(135deg, var(--accent-gold-bright), var(--accent-gold));
             width: 22px;
             height: 22px;
             border-radius: 50%;
@@ -140,6 +144,7 @@
             align-items: center;
             justify-content: center;
             border: 2px solid var(--bg-dark);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
 
         .badge-verified svg {
@@ -153,31 +158,34 @@
             font-weight: 800;
             color: var(--text-main);
             letter-spacing: -0.3px;
+            background: linear-gradient(180deg, #ffffff 30%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .profile p {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--accent-gold);
             margin-top: 4px;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.2px;
         }
 
-        /* Main Action Button */
         .cta-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 100%;
-            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
-            color: #ffffff;
-            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 50%, #8b6508 100%);
+            color: #000000;
+            font-weight: 800;
             font-size: 14px;
             padding: 16px;
             border-radius: 16px;
             text-decoration: none;
-            box-shadow: 0 10px 25px -5px rgba(0, 136, 204, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.5);
             margin-bottom: 18px;
             transition: all 0.2s ease;
             -webkit-tap-highlight-color: transparent;
@@ -185,16 +193,15 @@
 
         .cta-btn:active {
             transform: scale(0.98);
-            box-shadow: 0 5px 15px -3px rgba(0, 136, 204, 0.4);
+            box-shadow: 0 5px 15px -3px rgba(212, 175, 55, 0.4);
         }
 
         .cta-btn svg {
             width: 20px;
             height: 20px;
-            fill: #ffffff;
+            fill: #000000;
         }
 
-        /* Stats Section */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -203,7 +210,7 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 12px 6px;
@@ -217,7 +224,7 @@
         }
 
         .stat-val.accent {
-            color: var(--accent-cyan);
+            color: var(--accent-gold-bright);
         }
 
         .stat-lbl {
@@ -229,10 +236,9 @@
             margin-top: 3px;
         }
 
-        /* Compliance Box (Ad Approval Protection) */
         .compliance-note {
-            background: rgba(6, 182, 212, 0.05);
-            border: 1px dashed rgba(6, 182, 212, 0.2);
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed rgba(212, 175, 55, 0.25);
             border-radius: 12px;
             padding: 10px 12px;
             font-size: 10px;
@@ -264,8 +270,8 @@
             width: 36px;
             height: 36px;
             border-radius: 10px;
-            background: var(--accent-glow);
-            border: 1px solid rgba(6, 182, 212, 0.25);
+            background: var(--accent-gold-glow);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -275,7 +281,7 @@
         .icon-box svg {
             width: 18px;
             height: 18px;
-            stroke: var(--accent-cyan);
+            stroke: var(--accent-gold-bright);
         }
 
         .feature-details h2 {
@@ -290,7 +296,6 @@
             margin-top: 2px;
         }
 
-        /* Footer & Compliance Nav */
         footer {
             text-align: center;
             margin-top: 16px;
@@ -300,9 +305,9 @@
 
         .community-tag {
             font-size: 11px;
-            color: var(--text-muted);
+            color: var(--accent-gold);
             margin-bottom: 12px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .footer-nav {
@@ -325,11 +330,11 @@
         }
 
         .footer-nav button:hover {
-            color: var(--accent-cyan);
+            color: var(--accent-gold-bright);
         }
 
         .dot {
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(212, 175, 55, 0.3);
             font-size: 9px;
         }
 
@@ -343,8 +348,8 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -361,7 +366,7 @@
         }
 
         .modal-box {
-            background: #0d1322;
+            background: #0d141e;
             border: 1px solid var(--card-border);
             border-radius: 20px;
             width: 100%;
@@ -370,7 +375,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.1);
         }
 
         .modal-header {
@@ -384,7 +389,7 @@
         .modal-header h3 {
             font-size: 14px;
             font-weight: 700;
-            color: var(--text-main);
+            color: var(--accent-gold-bright);
         }
 
         .close-btn {
@@ -410,7 +415,7 @@
         }
 
         .modal-body h4 {
-            color: var(--text-main);
+            color: var(--accent-gold);
             margin-top: 10px;
             margin-bottom: 4px;
             font-size: 12px;
